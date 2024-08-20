@@ -1,0 +1,49 @@
+<!-- html code -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone Book</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="body">
+    <header class="header">
+        <h1>Phone Book</h1>
+    </header>
+    <main>
+        <section class="container">
+            <div class="details">
+                <input type="text" placeholder="Search" id="search-input" onkeyup="searchContact(event)">
+                <div class="options">
+                    <img src="img/add.png" onclick="popAdd()" alt="add contact">
+                    <img src="img/delete.png" onclick="dltAll()" alt="delete all">
+                    <img src="img/dark.png" onclick="changeMode()" alt="dark mode">
+                </div>
+            </div>
+            <section class="contacts">
+                <form class="contact">
+                    <ul class="list" onmouseover="changeColor()" onmouseout="resetColor()">
+                    </ul>
+                </form>
+            </section>
+        </section>
+        <div class="modal" id="myModal" onclick="closeModal(event)">
+            <div class="modal-content">
+                <button class="close-btn" id="closeModalBtn" onclick="closeModal(event)">&times;</button>
+                <div class="modal-container">
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <p>Done By: Ali Hanafi , Bashar Safieh
+        </p>
+    </footer>
+    <script src="index.js"></script>
+</body>
+
+</html>
+<!-- end of html code -->

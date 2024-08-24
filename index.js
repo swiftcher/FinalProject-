@@ -159,6 +159,11 @@ function saveNew() {
         alert("Invalid email address");
         return;
       }
+      if (checkNumber(newNumber,ind)) {
+        alert("Number Alreay Exists")
+        return;
+      }
+      
     }
     const newUser = { name: newName, number: newNumber, email: newEmail }; //building new user with new values 
     users.push(newUser); // adding the new user to the last in our array 
@@ -181,7 +186,11 @@ function saveEdit(event, ind) {
   } else {
     if (newEmail !== "") {
       if (!checkEmail(newEmail)) {
-        alert("Invalid email address");
+        alert("Invalid Email Address");
+        return;
+      }
+      if (checkNumber(newNumber,ind)) {
+        alert("Number Alreay Exists")
         return;
       }
     }
@@ -221,6 +230,14 @@ list.addEventListener('mouseout', (event) => {
 
 function checkEmail(email) {
   return email.includes('@') && email.includes('.');
+}
+function checkNumber(number,ind) {
+  for (let i = 0; i < users.length; i++) {
+    if (i !== ind && users[i].number === number) {
+      return true;
+    }
+  }
+  return false;
 }
 
 function changeMode(){

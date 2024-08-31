@@ -287,12 +287,10 @@ function checkEditName(name,id)
 
 function changeMode(){
   const body = document.body;
-  body.classList.toggle('mode');
+  body.classList.toggle('BodyDarkmode');
 
   const contacts = document.querySelector('.contacts');
-  contacts.classList.toggle('mode');
+  contacts.classList.toggle('ListDarkMode');
 
-  const darkmode = document.querySelector(".switch")
-  darkmode.classList.toggle('switchOff');
 }
 // end of js code

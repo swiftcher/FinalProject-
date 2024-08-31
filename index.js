@@ -201,12 +201,12 @@ function saveEdit(event, ind) {
         return;
       }
     }
-      if (checkEditNumber(newNumber,ind)) {
+    if (checkEditNumber(newNumber,ind)){
         alert("Number Alreay Exists")
         return;
       }
 
-      if(checkEditName(newName,ind)){
+    if(checkEditName(newName,ind)){
         alert("Name Alreay Exists")
         return;
 

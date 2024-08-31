@@ -87,6 +87,9 @@ function popInfo(ind) {
     }
     
     `
+
+
+    
     
 }
 
@@ -111,7 +114,7 @@ function dltAll() {
   if (isOk) {
     list.innerHTML =
       `
-    <p id="inner">  No contacts ! </p>
+    <p id="inner">  No contacts  </p>
     
     `
     users = [];
@@ -127,7 +130,7 @@ function dltContact(ind) {
     if (users.length === 0)
       list.innerHTML =
         `
-        <p id="inner"> No contacts were added  </p>
+        <p id="inner"> No contacts </p>
 
         `
   }
@@ -155,6 +158,7 @@ function saveNew() {
   if (newName === "" || newNumber === "") {
     alert("name or number can't be empty");
     return;
+   
   } 
   else {
     if (newEmail !== "") {
@@ -229,9 +233,9 @@ function searchContact(e) { // the event here is onkeyUp
       return user.name.toLowerCase().includes(e.target.value.toLowerCase()); // condition is returining names in lower case that includes the keyUp(e) value as alowercase 
     });
   list.innerHTML = ``; // deleting the html list 
-  filteredList.forEach(user => { //rebuilding the list again after targeting the user we are looking for 
-    addContact(user);
-  })
+  filteredList.forEach((user ,ind)=> addContact(user,ind));  //rebuilding the list again after targeting the user we are looking for 
+  
+  
 }
 
 list.addEventListener('mouseover', (event) => { //this method listen to mouseover event 

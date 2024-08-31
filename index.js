@@ -68,6 +68,7 @@ function sortContacts(contacts) { // הפונקתיה מקבךת מערך
 sortContacts(users);
 users.forEach((contact, ind) => addContact(contact, ind))
 
+
 function popInfo(ind) {
   openModal();
   const modalCont = document.querySelector(".modal-container");
@@ -151,20 +152,29 @@ function saveNew() {
   let newNumber = document.querySelector("#addNumber").value;
   let newEmail = document.querySelector("#addEmail").value;
 
-  if (newName === "" || newNumber === "") { // checking if name or number are empty 
-    alert("name or number can't be empty"); // alert 
-  } else {
-    if (newEmail !== "") { // if Email is notEmpty 
-      if (!checkEmail(newEmail)) { //if  Email dosnot include  @ and . 
-        alert("Invalid email address");
+  if (newName === "" || newNumber === "") {
+    alert("name or number can't be empty");
+  } 
+  else {
+    if (newEmail !== "") {
+      if (!checkEmail(newEmail)) {
+        alert("Invalid Email Address");
         return;
       }
-      if (checkNumber(newNumber,ind)) {
-        alert("Number Alreay Exists")
-        return;
-      }
-      
     }
+
+    if(checkIfNewNumberExists(newNumber) === true){
+      alert("Number Already Exists");
+        return;
+    }
+    if(checkIfNewNameExists(newName) === true){
+      alert("Name Already Exists");
+        return;
+
+    }
+    
+  }
+    
     const newUser = { name: newName, number: newNumber, email: newEmail }; //building new user with new values 
     users.push(newUser); // adding the new user to the last in our array 
     list.innerHTML = ``; // after that we delete all users from our html
@@ -172,7 +182,7 @@ function saveNew() {
     users.forEach((contact, ind) => addContact(contact, ind)); // and readd them in the html again after sorting 
     document.getElementById('myModal').style.display = 'none'; // closing the popup 
   }
-}
+
 
 
 function saveEdit(event, ind) {
@@ -183,15 +193,23 @@ function saveEdit(event, ind) {
 
   if (newName === "" || newNumber === "") {
     alert("name or number can't be empty");
-  } else {
+  } 
+  else {
     if (newEmail !== "") {
       if (!checkEmail(newEmail)) {
         alert("Invalid Email Address");
         return;
       }
-      if (checkNumber(newNumber,ind)) {
+    }
+      if (checkEditNumber(newNumber,ind)) {
         alert("Number Alreay Exists")
         return;
+      }
+
+      if(checkEditName(newName,ind)){
+        alert("Name Alreay Exists")
+        return;
+
       }
     }
     const newUser = { name: newName, number: newNumber, email: newEmail };
@@ -201,7 +219,7 @@ function saveEdit(event, ind) {
     users.forEach((contact, ind) => addContact(contact, ind));
     document.getElementById('myModal').style.display = 'none';
   }
-}
+
 
 function searchContact(e) { // the event here is onkeyUp 
   list.innerHTML = ``;
@@ -231,13 +249,40 @@ list.addEventListener('mouseout', (event) => {
 function checkEmail(email) {
   return email.includes('@') && email.includes('.');
 }
-function checkNumber(number,ind) {
+function checkEditNumber(number,ind) {
   for (let i = 0; i < users.length; i++) {
     if (i !== ind && users[i].number === number) {
       return true;
     }
   }
   return false;
+}
+
+function checkIfNewNumberExists(number) {
+  for (let i = 0; i < users.length; i++) {
+    if (users[i].number === number) {
+      return true;
+    }
+  }
+  return false;
+}
+function checkIfNewNameExists(name) {
+  for (let i = 0; i < users.length; i++) {
+    if (users[i].name === name) {
+      return true;
+    }
+  }
+  return false;
+}
+function checkEditName(name,id)
+{
+   for(let i=0; i< users.length ; i++)
+   {
+     if(users[i].name === name && id !== i)
+       return true
+   }
+   return false;
+   
 }
 
 function changeMode(){

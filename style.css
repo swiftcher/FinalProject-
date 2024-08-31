@@ -32,12 +32,7 @@
     width: 25%;
     border-radius: 26px;
 }
-.switchOff{
-    width: 25%;
-    border-radius: 26px;
-    background-color: goldenrod;
 
-}
 
 main {
     flex-grow: 1;
@@ -241,13 +236,15 @@ form img {
     font-size: 25px;
 }
 
-.mode {
-    background-color: rgb(63, 63, 63); /* darker background */
+.BodyDarkmode {
+    background-color: rgba(45, 40, 79, 0.83); /* darker background */
   }
+.ListDarkMode{
+    background-color: rgb(245, 222, 179); /* darker background */
+
+}
   
-  .contacts.mode{
-    background-color: rgb(255, 255, 255); /* white text color for all user data */
-  }
+
 /* #endregion main */
 /* #region footer */
 .footer p {

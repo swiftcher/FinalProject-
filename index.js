@@ -154,6 +154,7 @@ function saveNew() {
 
   if (newName === "" || newNumber === "") {
     alert("name or number can't be empty");
+    return;
   } 
   else {
     if (newEmail !== "") {
@@ -193,6 +194,7 @@ function saveEdit(event, ind) {
 
   if (newName === "" || newNumber === "") {
     alert("name or number can't be empty");
+    return;
   } 
   else {
     if (newEmail !== "") {

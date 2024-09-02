@@ -230,37 +230,33 @@ function saveEdit(event, ind) {
 
 
 function searchContact(e) { // the event here is onkeyUp 
-  list.innerHTML = ``;
+  
   const filteredList = users.filter(user => { //filter is a method that gets an array filled with whole objects that fit the condition
       return user.name.toLowerCase().includes(e.target.value.toLowerCase()); // condition is returining names in lower case that includes the keyUp(e) value as alowercase 
     });
-  
-  filteredList.forEach((contact, ind) => addContactAfterSeach(contact, ind)); //rebuilding the list again after targeting the user we are looking for 
- 
-}
-
-
-function addContactAfterSeach(contact, ind) {
-  if (list.innerHTML === `<p> No contacts ! </p>`)
     list.innerHTML = ``;
-  const li = document.createElement('li');
-  li.classList.add("contact");
-  li.innerHTML =
-    `
-    <div class="contact-info">
-    <img src="img/contact.png" alt="">
-    <p>${contact.name}</p>
-    <p class="detail">${contact.number}</p>
-    <p class="detail">${contact.email}</p>
-    </div>
-    <div class="contact-actions">
-        <img onclick="popInfoForAfterSearch('${contact.name}')" src="img/info.png" alt="Error 404">
-        <img  onclick="popEditAfterSearch(${ind}, '${contact.name}')" src="img/edit.png" alt="Error 404">
-        <img onclick="dltContact(${ind})" src="img/delete.png" alt="Error 404">
-    </div>
-  `;
-  list.append(li);
+    //rebuilding the list again after targeting the user we are looking for 
+  filteredList.forEach((user) => (AddingContactsAfterSearch(user)));
+  }
+
+ 
+
+
+
+function AddingContactsAfterSearch(contact)
+{
+  for(let i=0;i<users.length;i++)
+    {
+      if(users[i].name === contact.name && users[i].number === contact.number )
+      {
+        addContact(users[i],i);
+      }
+    } 
+
 }
+
+
+
 
 
 function findUserByName(users, name) {
@@ -268,39 +264,6 @@ function findUserByName(users, name) {
 }
 
 
-function popEditAfterSearch(ind,name) {
-  openModal();
-  const modalCont = document.querySelector(".modal-container");
-  const contact = findUserByName(users,name)
-  modalCont.innerHTML =
-    `
-    <form>
-    <img src="img/contact.png" alt="Error 404">
-    <label>Name: <input id="editName" type="text" value="${contact.name}"> </label>
-    <label>Number: <input id="editNumber" type="number" value="${contact.number}"></label>
-    <label>Email: <input id="editEmail" type="email" value="${contact.email}"></label>
-    <input type="submit" id="saveBtn" onclick="saveEdit(event,${ind})" value="Save" ></input>
-    </form>
-  `
-}
-
-function popInfoForAfterSearch(contactName) {
-  openModal();
-  const modalCont = document.querySelector(".modal-container");
- 
-   const contact = findUserByName(users,contactName);
-  modalCont.innerHTML =
-    `
-    <img src="img/contact.png" alt="Error 404">
-    <p>Name: ${contact.name}</p><br>
-    <p>Number: ${contact.number}</p><br>
-    ${contact.email === "" ? "" : 
-      `
-      <p>Email: ${contact.email}</p>
-      `
-    }
-    `;
-}
 
 
 

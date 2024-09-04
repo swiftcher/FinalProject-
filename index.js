@@ -257,17 +257,6 @@ function AddingContactsAfterSearch(contact)
 
 
 
-
-
-function findUserByName(users, name) {
-  return users.find(user => user.name === name);
-}
-
-
-
-
-
-
 list.addEventListener('mouseover', (event) => { //this method listen to mouseover event 
   if (event.target.tagName === 'LI') { // if the event tagname is a LI (list)
     event.target.style.fontWeight = 'bold'; //change style to bols
